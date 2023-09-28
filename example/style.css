@@ -1,0 +1,206 @@
+:root {
+  --bg1: #fff;
+  --bg2: #fff;
+  --bg_title: #fff;
+  --color: #142948;
+  --color2: #242e6f;
+  --color-dark: #303036;
+  --main-color1: #1a75ff;
+  --main-color1-hover: #1a75ff29;
+  --main-color1-opacity: #0569ff0a;
+
+  --outline: #065eab;
+
+  --selection: #1a75ff65;
+
+  --filter-logo: contrast(1) invert(0);
+
+  --radius-esm: 1px;
+  --radius-sm: 2px;
+  --radius-md: 5px;
+  --radius-lg: 8px;
+  --radius-elg: 12px;
+
+  --contextBg: #fff;
+  --contextColor: #303036;
+
+  --scroll-track: #e0e0e0;
+  --scroll-bar: #c2c2c2;
+  --scroll-barHover: #919191;
+  --scroll-scroll-draggable: #919191;
+
+  --red: #d32f2f;
+  --light_red: #ef5350;
+  --green: #388e3c;
+  --light_green: #66bb6a;
+  --blue: #303f9f;
+  --orange: #fb8c00;
+  --grey: #757575;
+  --light_grey: #cecece;
+
+  --trans-esm: 0.1s all cubic-bezier(0.7, 0, 0.3, 1);
+  --trans-sm: 0.15s all cubic-bezier(0.7, 0, 0.3, 1);
+  --trans-md: 0.25s all cubic-bezier(0.7, 0, 0.3, 1);
+  --trans-lg: 0.5s all cubic-bezier(0.7, 0, 0.3, 1);
+  --trans-elg: 0.8s all cubic-bezier(0.7, 0, 0.3, 1);
+
+  --shadowColor: rgba(104, 104, 104, 0.1);
+  --shadow: 0 0 13px 0 var(--shadowColor);
+
+  --invert1: invert(1);
+  --invert0: invert(0);
+}
+
+/* :root {
+  --bg1: #1c1c25;
+  --bg2: #12131a;
+  --bg_title: #fff;
+  --color: #ffffff;
+  --color2: #ffffff;
+  --color-dark: #ffff;
+  --main-color1: #1a75ff;
+  --main-color1-hover: #1a75ff29;
+  --main-color1-opacity: #0569ff0a;
+  --outline: #065eab;
+  --selection: #1a75ff65;
+
+  --radius-esm: 1px;
+  --radius-sm: 2px;
+  --radius-md: 5px;
+  --radius-lg: 8px;
+  --radius-elg: 12px;
+
+  --contextBg: #2f2f37;
+  --contextColor: #ffffff;
+
+  --scroll-track: #e0e0e0;
+  --scroll-bar: #c2c2c2;
+  --scroll-barHover: #919191;
+  --scroll-scroll-draggable: #919191;
+
+  --red: #d32f2f;
+  --light_red: #ef5350;
+  --green: #388e3c;
+  --light_green: #66bb6a;
+  --blue: #303f9f;
+  --orange: #fb8c00;
+  --grey: #757575;
+  --light_grey: #cecece;
+
+  --trans-esm: 0.1s all cubic-bezier(0.7, 0, 0.3, 1);
+  --trans-sm: 0.15s all cubic-bezier(0.7, 0, 0.3, 1);
+  --trans-md: 0.25s all cubic-bezier(0.7, 0, 0.3, 1);
+  --trans-lg: 0.5s all cubic-bezier(0.7, 0, 0.3, 1);
+  --trans-elg: 0.8s all cubic-bezier(0.7, 0, 0.3, 1);
+
+  --shadowColor: rgba(104, 104, 104, 0.1);
+  --shadow: 0 0 13px 0 var(--shadowColor);
+
+  --invert1: invert(0);
+  --invert0: invert(1);
+
+  --filter-logo: contrast(3) invert(1);
+
+  --win-color: #fff;
+  --win-bg: #272727;
+  --win-bg-main: #1a75ff;
+  --win-bg-main-opacity: #1a75ff75;
+  --win-bg-main-hover: #1a75ff29;
+  --win-shadow-color: rgba(104, 104, 104, 0.1);
+  --win-shadow: 0 0 13px 0 var(--win-shadow-color);
+  --win-trans-esm: 0.1s all cubic-bezier(0.7, 0, 0.3, 1);
+  --win-trans-sm: 0.15s all cubic-bezier(0.7, 0, 0.3, 1);
+  --win-trans-md: 0.25s all cubic-bezier(0.7, 0, 0.3, 1);
+  --win-trans-lg: 0.5s all cubic-bezier(0.7, 0, 0.3, 1);
+  --win-trans-elg: 0.8s all cubic-bezier(0.7, 0, 0.3, 1);
+  --win-radius-esm: 1px;
+  --win-radius-sm: 2px;
+  --win-radius-md: 5px;
+  --win-radius-lg: 8px;
+  --win-radius-elg: 12px;
+} */
+
+:root {
+  --bg-inspector: var(--bg1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100dvh;
+  overflow: auto;
+  background-color: var(--bg2);
+}
+
+body {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 50px;
+}
+
+div#content {
+  padding: 8px 8px;
+  border: 1px solid rgba(133, 133, 133, 0.173);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  max-width: 450px;
+  width: 100%;
+  background-color: var(--bg1);
+}
+
+div#content h1 {
+  font-family: gb;
+  color: var(--color-dark);
+  font-size: 18px;
+}
+
+div#content .title {
+  padding: 2px 0px 2px 7px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+#new,
+#new2 {
+  border: 1px solid rgba(133, 133, 133, 0.173);
+  border-radius: var(--radius-md);
+  font-family: 'gl';
+  padding: 3px 7px;
+  cursor: pointer;
+  font-size: 13px;
+  background-color: transparent;
+  color: var(--color-dark);
+  transition: var(--trans-md);
+  text-decoration: none;
+}
+
+#new:hover,
+#new2:hover {
+  background-color: var(--main-color1-opacity);
+}
+
+#btns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: flex-end;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 5px;
+}
