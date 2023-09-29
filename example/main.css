@@ -1,0 +1,291 @@
+MenuJS {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 100%;
+  gap: 5px;
+  height: 100%;
+  padding: 5px 2px;
+  width: 43px;
+  border-right: 1px solid rgba(133, 133, 133, 0.173);
+  user-select: none;
+}
+
+MenuJS *:focus-visible {
+  outline: var(--main-color1) solid 2px;
+  outline-offset: -2px;
+}
+
+MenuJSItem {
+  width: calc(100% - 6px);
+  min-width: calc(100% - 6px);
+  height: 32px;
+  min-height: 32px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(133, 133, 133, 0.173);
+  border-radius: var(--radius-md);
+  transition: var(--trans-md);
+  position: relative;
+  cursor: pointer;
+}
+
+MenuJSItem:hover {
+  background-color: var(--main-color1-opacity);
+}
+
+MenuJSItem[type=switch] {}
+
+MenuJSItemIcon {
+  color: var(--color);
+  font-weight: 700;
+  transition: var(--trans-md);
+  pointer-events: none;
+}
+
+MenuJSItem:hover>MenuJSItemIcon {
+  color: var(--main-color1);
+}
+
+MenuJSItem[active] {
+  border-color: var(--main-color1);
+  background-color: var(--main-color1-hover);
+}
+
+MenuJSItem[active]>MenuJSItemIcon {
+  color: var(--main-color1);
+}
+
+MenuJSItemTitle {
+  display: none;
+  pointer-events: none;
+}
+
+MenuJSItemMore {
+  position: absolute;
+  height: 5px;
+  width: 5px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: 0px 0px calc(var(--radius-md) * 0.7) 0px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+MenuJSItemMore:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 5px 5px;
+  border-color: transparent transparent var(--color) transparent;
+}
+
+MenuJSItemSubmenu {
+  display: none;
+  position: absolute;
+  right: -6px;
+  border-radius: var(--radius-md);
+  top: 1px;
+  transform: translateX(100%);
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 170px;
+  backdrop-filter: blur(15px);
+  gap: 0px;
+}
+
+MenuJSHR {
+  margin-top: 1px;
+  margin-bottom: 1px;
+  height: 1px;
+  width: calc(100% - 6px);
+  background-color: rgba(133, 133, 133, 0.173);
+}
+
+MenuJSItemHelper {
+  position: absolute;
+  right: -6px;
+  top: -1px;
+  width: 250px;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(133, 133, 133, 0.173);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: stretch;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(calc(100% + -10px));
+  cursor: default;
+  transition: var(--trans-lg);
+}
+
+MenuJSItemHelper:before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: -3px;
+  width: 9px;
+  height: 50px;
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+MenuJSItemHelper button {
+  border-radius: calc(var(--radius-md) * 0.7);
+  background-color: var(--main-color1);
+  font-family: gb;
+  color: #fff;
+  border: none;
+  padding: 7px 0px;
+  cursor: pointer;
+  margin: 0px 10px;
+}
+
+MenuJSItem[helper=true]:hover MenuJSItemHelper {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(100%);
+}
+
+MenuJSItem[submenu="true"] MenuJSItemHelper{
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateX(calc(100% + -10px)) !important;
+}
+
+
+MenuJSItemHelperImage {
+  height: 150px;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: calc(var(--radius-md) * 0.7) calc(var(--radius-md) * 0.7) 0px 0px;
+}
+
+MenuJSItemHelperText {
+  font-family: 'gb';
+  padding: 10px;
+  display: block;
+  font-size: 15px;
+  padding-bottom: 0px;
+}
+
+MenuJSItemHelperDesc {
+  display: block;
+  font-family: 'gl';
+  font-size: 14px;
+  padding: 10px;
+  padding-top: 5px;
+  text-align: left;
+}
+
+MenuJSItemHelperDesc a {
+  color: var(--main-color1);
+  text-decoration: none;
+}
+
+MenuJSItemHelperDesc a:hover {
+  text-decoration: underline;
+}
+
+MenuJSItemHelperDesc a:active {
+  text-decoration: none;
+}
+
+MenuJSItemHelperDesc a:visited {
+  text-decoration: none;
+}
+
+MenuJSItemHelperDesc a:focus {
+  text-decoration: none;
+}
+
+MenuJSItem[submenu=true] MenuJSItemSubmenu {
+  display: flex;
+}
+
+MenuJSItemSubmenu:before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: -3px;
+  width: 9px;
+  height: 100%;
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+MenuJSItemSubmenu MenuJSItem {
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 6px 9px;
+  gap: 10px;
+  height: auto;
+  min-height: 0px;
+  border-radius: 0px;
+  margin-top: -1px;
+}
+
+MenuJSItemSubmenu MenuJSItemShotcut {
+  font-family: 'gb';
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+MenuJSItemSubmenu MenuJSItemIcon {
+  font-size: 14px;
+}
+
+MenuJSItemSubmenu MenuJSItemTitle {
+  display: block;
+  font-family: 'gl';
+  font-size: 13px;
+  width: 100%;
+  word-break: break-word;
+}
+
+MenuJSItemSubmenu MenuJSItem:first-child {
+  border-radius: calc(var(--radius-md) * 0.7) calc(var(--radius-md) * 0.7) 0px 0px;
+}
+
+MenuJSItemSubmenu MenuJSItem:last-child {
+  border-radius: 0px 0px calc(var(--radius-md) * 0.7) calc(var(--radius-md) * 0.7);
+}
+
+MenuJSItemSubmenu MenuJSItem:first-child:last-child {
+  border-radius: calc(var(--radius-md) * 0.7);
+}
+
+MenuJSItemHelperBtns {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 3px;
+  margin-bottom: 10px;
+}

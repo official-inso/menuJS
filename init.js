@@ -37,7 +37,26 @@ export default class MenuJS {
 
   getValue(){
     
-    
+    let container = document.getElementById(
+      this.templates.container.getAttribute("id")
+    );
+
+    container.innerHTML = "";
+
+    for (const key in this.#value) {
+      const element = this.#value[key];
+      
+      let out = this.templates.create.button(
+        element.state,
+        element.icon,
+        element.helper,
+        element.enabled,
+        element.items,
+        element.click,
+        element.id
+      );
+      container.appendChild(out);
+    }
 
   }
 

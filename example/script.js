@@ -9,69 +9,72 @@ document.addEventListener('DOMContentLoaded', function() {
       icon: "icons-pointer",
       id: "rndString1",
       enabled: true,
-      state: {
-        enabled: {
-          icon: "icons-pointer",
-          name: "Включено",
-        },
-        disabled: {
-          icon: "icons-pointer",
-          name: "Выключено",
-        },
+      helper: {
+        img: "https://i.pinimg.com/originals/26/6b/e8/266be8ffd47b293b5aa0f3d35c19775d.gif",
+        title: "Выделение",
+        desc: "Данная функция позволяет выделить элементы в программе",
+        buttons: [
+          {
+            text: "123",
+            click: () => {
+              console.log("123");
+            },
+          },
+          {
+            text: "123",
+            click: () => {
+              console.log("123");
+            },
+          },
+        ],
       },
-      click: (value, element, id, e) => {
-        console.log(value, element, id, e);
+      name: "Выделить",
+      click: (e) => {
+        console.log("Выделить22", e);
       },
     },
     {
       icon: "icons-pointer",
       id: "rndString1",
       enabled: true,
-      state: {
-        enabled: {
-          icon: "icons-pointer",
-          name: "Включено",
-        },
-        disabled: {
-          icon: "icons-pointer",
-          name: "Выключено",
-        },
+      helper: {
+        img: "https://i.pinimg.com/originals/26/6b/e8/266be8ffd47b293b5aa0f3d35c19775d.gif",
+        title: "Выделение",
+        desc: "Данная функция позволяет выделить элементы в программе",
+        buttons: [
+          {
+            text: "123",
+            click: () => {
+              console.log("123");
+            },
+          },
+          {
+            text: "123",
+            click: () => {
+              console.log("123");
+            },
+          },
+        ],
       },
-      list: [
+      name: "Выделить",
+      value: "rndString1",
+      items: [
         {
-          icon: "icons-pointer",
+          icon: "icons-load",
           id: "rndString1",
+          name: "Выделить",
           enabled: true,
-          state: {
-            enabled: {
-              icon: "icons-pointer",
-              name: "Включено",
-            },
-            disabled: {
-              icon: "icons-pointer",
-              name: "Выключено",
-            },
-          },
-          click: (value, element, id, e) => {
-            console.log(value, element, id, e);
+          click: (e) => {
+            console.log("Выделить", e);
           },
         },
         {
-          icon: "icons-pointer",
-          id: "rndString1",
+          icon: "icons-home",
+          id: "rndString2",
+          name: "Выделить все",
           enabled: true,
-          state: {
-            enabled: {
-              icon: "icons-pointer",
-              name: "Включено",
-            },
-            disabled: {
-              icon: "icons-pointer",
-              name: "Выключено",
-            },
-          },
-          click: (value, element, id, e) => {
-            console.log(value, element, id, e);
+          click: (e) => {
+            console.log("Выделить все", e);
           },
         },
       ],
