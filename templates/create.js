@@ -1,6 +1,6 @@
 export default class Create {
   parent = undefined;
-
+  click = undefined;
   /**
    * Конструктор класса templates
    * @constructor
@@ -19,6 +19,7 @@ export default class Create {
     menu.classList.add("MenuJS_container");
     menu.setAttribute("id", id);
 
+    menu.setAttribute("side", this.parent.parent.getSide());
     return menu;
   }
 
@@ -28,180 +29,184 @@ export default class Create {
   }
 
   button(
-    state = "Текст кнопки",
+    name = "Текст кнопки",
     iconClass = "icons-error",
     helperObj = undefined,
     active = false,
     items = [],
     click = undefined,
-    id = this.parent.randomString(30)
+    id = this.parent.randomString(30),
+    length = 0
   ) {
-    // <MenuJSItem type="switch" tabindex="0" helper="true" active>
-    //   <MenuJSItemIcon class="icons-pointer"></MenuJSItemIcon>
-    //   <MenuJSItemTitle>Выделить</MenuJSItemTitle>
-    //   <MenuJSItemMore></MenuJSItemMore>
-    //   <MenuJSItemSubmenu>
-    //     <MenuJSItem>
-    //       <MenuJSItemIcon class="icons-home"></MenuJSItemIcon>
-    //       <MenuJSItemTitle>Element1</MenuJSItemTitle>
-    //     </MenuJSItem>
-
-    //     <MenuJSItem>
-    //       <MenuJSItemIcon class="icons-home"></MenuJSItemIcon>
-    //       <MenuJSItemTitle>Element2</MenuJSItemTitle>
-    //     </MenuJSItem>
-    //   </MenuJSItemSubmenu>
-
-    //   <MenuJSItemHelper visible="hidden">
-    //     <MenuJSItemHelperImage style="background-image: url(https://i.pinimg.com/originals/26/6b/e8/266be8ffd47b293b5aa0f3d35c19775d.gif)"></MenuJSItemHelperImage>
-    //     <MenuJSItemHelperText>Выделить</MenuJSItemHelperText>
-    //     <MenuJSItemHelperDesc>
-    //       Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
-    //       <a href="#">Porro</a> debitis corrupti quam a, consectetur cum nobis
-    //       impedit totam vel optio quia modi ipsa quis laudantium eveniet.
-    //       Obcaecati, deserunt.
-    //     </MenuJSItemHelperDesc>
-    //     <button>Просмотр</button>
-    //   </MenuJSItemHelper>
-    // </MenuJSItem>
 
     let item = document.createElement("MenuJSItem");
-    let icon = document.createElement("MenuJSItemIcon");
-    let title = document.createElement("MenuJSItemTitle");
-    let more = document.createElement("MenuJSItemMore");
-    let submenu = document.createElement("MenuJSItemSubmenu");
+    let itemClick = document.createElement("MenuJSItemClick");
+    let itemIcon = document.createElement("MenuJSItemIcon");
+    let itemTitle = document.createElement("MenuJSItemTitle");
+    let itemMore = document.createElement("MenuJSItemMore");
+    let itemSubmenu = document.createElement("MenuJSItemSubmenu");
+    
 
-    let openHelper = true;
 
-    item.setAttribute("_id", id);
+    itemClick.appendChild(itemIcon);
+    itemClick.appendChild(itemTitle);
 
-    if (typeof state == "string") {
-      title.innerText = state;
-    }
-
-    icon.classList.add(iconClass);
-
-    item.appendChild(icon);
-    item.appendChild(title);
-
-    if (items && items.length > 0) {
-      items.forEach((element) => {
-        let out = this.button(
-          element.state,
-          element.icon,
-          undefined,
-          element.enabled,
-          [],
-          element.click,
-          element.id
-        );
-        submenu.appendChild(out);
-      });
-
-      item.appendChild(more);
-      item.appendChild(submenu);
-
-      // Если долгое удержание левой кнопки мыши, то открываем меню добавляя атрибут submenu
-      item.addEventListener("mousedown", (e) => {
-        if (e.which == 1) {
-          let timer = setTimeout(() => {
-            item.setAttribute("submenu", "true");
-            item.removeAttribute("helper");
-            openHelper = false;
-          }, 250);
-          item.addEventListener("mouseup", () => {
-            clearTimeout(timer);
-          });
-        }
-      });
-    }
-
-    if (helperObj) {
-      let helper = this.helper(
-        helperObj.img,
-        helperObj.title,
-        helperObj.desc,
-        helperObj.buttons
-      );
-      item.appendChild(helper);
-
-      let mousePosition = { x: 0, y: 0 };
-      let lastMousePosition = { x: 0, y: 0 };
-      let mouseMoved = false;
-      let mouseStoppedTimer = null;
-
-      item.addEventListener("mousemove", function (event) {
-        mousePosition.x = event.pageX;
-        mousePosition.y = event.pageY;
-        mouseMoved =
-          Math.abs(mousePosition.x - lastMousePosition.x) > 15 ||
-          Math.abs(mousePosition.y - lastMousePosition.y) > 15;
-        lastMousePosition.x = mousePosition.x;
-        lastMousePosition.y = mousePosition.y;
-        clearTimeout(mouseStoppedTimer);
-        mouseStoppedTimer = setTimeout(function () {
-          if (!mouseMoved) {
-            if (openHelper) {
-              item.setAttribute("helper", "true");
-            }
-          }
-        }, 1000);
-      });
-
-      item.addEventListener("mouseleave", function (event) {
-        clearTimeout(mouseStoppedTimer);
-        item.removeAttribute("helper");
-        openHelper = true;
-      });
-    }
-
-    let r = false;
-
-    item.addEventListener("mousedown", (e) => {
-      // e.preventDefault();
-
-      let container = document.getElementById(
-        this.parent.container.getAttribute("id")
-      );
-      container.querySelectorAll("MenuJSItem").forEach((element) => {
-        element.removeAttribute("active");
-      });
-      r = true;
-    });
-
-    item.addEventListener("mouseup", (e) => {
- 
-      let divElement = e.target.parentNode;
-
-      if (items.length == 0 && e.target.parentNode.tagName != "MENUJS") {
-        
-        e.target.setAttribute("active", "true");
-
-        
-        while (divElement.tagName !== "MENUJSITEM") {
-          divElement = divElement.parentNode;
-          if (!divElement) {
-            break;
-          }
-        }
-        divElement.querySelector("MenuJSItemIcon").setAttribute("class", "");
-        divElement.querySelector("MenuJSItemIcon").classList.add(iconClass);
-        divElement.setAttribute("_id", id);
-      }
-      if (r) if (click) click(id);
-
-      if(divElement.querySelectorAll("MenuJSItem").length > 0){
-        console.log(123)
-      }
-
-      item.setAttribute("active", "true");
-      r = false;
-    });
+    item.appendChild(itemClick);
+    item.appendChild(itemSubmenu);
+    
 
     item.setAttribute("type", "switch");
-    item.setAttribute("tabindex", "0");
+    itemClick.setAttribute("tabindex", "0");
+
+    itemClick.setAttribute("id", id);
+
+    if(items.length > 0){
+
+      itemIcon.classList.add(items[0].icon);
+      itemTitle.innerText = items[0].name;
+      itemClick.appendChild(itemMore);
+      
+
+      if (helperObj) {
+        let itemHelper = this.helper(
+          helperObj.img,
+          helperObj.title,
+          helperObj.desc,
+          helperObj.buttons
+        );
+
+        item.appendChild(itemHelper);
+        item.longHover(() => {
+          item.setAttribute("helper", "true");
+        }, 1000);
+
+      }
+
+      item.longPress(() => {
+        item.setAttribute("submenu", "true");
+      }, 500);
+      
+      items.forEach(element => {
+        itemSubmenu.appendChild(this.button(
+          element.name,
+          element.icon,
+          element.helper,
+          element.enabled,
+          element.items,
+          element.click,
+          element.id,
+          length + 1
+        ));
+      });
+    } else {
+      itemIcon.classList.add(iconClass);
+      itemTitle.innerText = name;
+
+      if (length == 0){
+        if (helperObj) {
+          let itemHelper = this.helper(
+            helperObj.img,
+            helperObj.title,
+            helperObj.desc,
+            helperObj.buttons
+          );
+
+          item.appendChild(itemHelper);
+          item.longHover(() => {
+            item.setAttribute("helper", "true");
+          }, 1000);
+
+        }
+      } 
+      
+    }
+
+    itemClick.addEventListener("mouseup", (e) => {
+
+      if(length == 0){
+
+        let items = e.target.parentElement.parentElement.parentElement.querySelectorAll("MenuJS > MenuJSItem");
+        
+        items.forEach(element => {
+          element.removeAttribute("active");
+        });
+
+        if (click) {
+          click(e.target, id);
+          e.target.parentElement.setAttribute("active", "true");
+          e.target.parentElement.removeAttribute("submenu");
+          e.target.parentElement.removeAttribute('helper')
+        }
+        else {
+
+          let container = document.getElementById(this.parent.container.getAttribute('id'));
+
+          let activeElem = item.querySelector("MenuJSItemSubmenu MenuJSItem[active] MenuJSItemClick");
+          let _id = undefined;
+          if(activeElem) {
+            _id = activeElem.getAttribute("id");
+          } else {
+            activeElem = item.querySelector("MenuJSItemSubmenu MenuJSItem MenuJSItemClick")
+            _id = activeElem.getAttribute("id");
+          }
+
+          let elemFirstActive = container.querySelector("#" + _id);
+
+          const mouseUpEvent = new MouseEvent("mouseup", {
+            bubbles: true,  // Указываем, что событие должно всплывать
+            cancelable: true, // Указываем, что событие можно отменить
+            view: window, // Определяем вид окна
+            button: 0, // Определяем кнопку мыши (0 для левой кнопки, 1 для средней, 2 для правой)
+            buttons: 1, // Определяем состояние кнопок мыши (1 для левой кнопки)
+            clientX: 0, // Определяем положение мыши по горизонтали
+            clientY: 0, // Определяем положение мыши по вертикали
+          });
+
+          elemFirstActive.dispatchEvent(mouseUpEvent);
+        }
+      } else {
+        click(e.target, id);
+        let icon = e.target.querySelector("MenuJSItemIcon").getAttribute("class").split(" ")[0];
+        let title = e.target.querySelector("MenuJSItemTitle").innerText;
+        let container = document.getElementById(this.parent.container.getAttribute('id'));
+        let mainElem = e.target.parentElement.parentElement.parentElement.querySelector('MenuJSItemClick');
+        let mainIcon = mainElem.querySelector("MenuJSItemIcon");
+        let mainTitle = mainElem.querySelector("MenuJSItemTitle");
+        let items = container.querySelectorAll("MenuJS > MenuJSItem");
+
+        items.forEach(element => {
+          element.removeAttribute("active");
+        });
+
+        e.target.parentElement.parentElement.querySelectorAll("MenuJSItem").forEach(element => {
+          element.removeAttribute("active");
+        });
+
+        e.target.parentElement.parentElement.parentElement.setAttribute("active", "true");
+
+        e.target.parentElement.setAttribute("active", "true");
+        mainIcon.setAttribute("class", icon);
+        mainTitle.innerText = title;
+
+        
+
+        setTimeout(() => {
+          e.target.parentElement.parentElement.parentElement.removeAttribute("submenu")
+          e.target.parentElement.parentElement.parentElement.removeAttribute('helper')
+        }, 500)
+        
+        
+      }
+
+    });
+
+
+
+
 
     return item;
+
+
   }
 
   helper(img, title = "Нет названия", text, btns = []) {

@@ -156,16 +156,67 @@ h1 {
   font-size: 25px;
   display: block;
 }
-p{
+
+p {
   max-width: 500px;
   text-align: center;
   font-family: gl;
 }
-#menuJS_content{
+
+#menuJS_content {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
   margin: auto;
   height: 100dvh;
+}
+
+.btn_list {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn_list button {
+  border: 1px solid rgba(133, 133, 133, 0.173);
+  border-radius: var(--radius-md);
+  font-family: 'gl';
+  padding: 3px 7px;
+  cursor: pointer;
+  font-size: 13px;
+  background-color: transparent;
+  color: var(--color-dark);
+  transition: var(--trans-md);
+  text-decoration: none;
+  display: block;
+  background-color: var(--main-color1);
+  color: #fff;
+}
+
+/* .btn_list button:hover {
+  background-color: var(--main-color1-opacity);
+} */
+
+.github {
+  height: 50px;
+  border-radius: var(--radius-lg);
+  background-image: url('./assets/github.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #fff;
+  border: 1px solid rgba(133, 133, 133, 0.173);
+  padding: 0px 55px;
+  display: block;
+  margin-top: 20px;
+}
+
+.github:hover {
+  border-color: var(--main-color1);
 }

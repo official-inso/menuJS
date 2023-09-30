@@ -18,13 +18,15 @@ import Create from "./create.js"
 export default class templates {
   #container = undefined;
   #create = undefined;
+  parent = undefined;
 
   /**
    * Конструктор класса templates
    * @constructor
    * @returns {void}
    */
-  constructor() {
+  constructor(parent) {
+    this.parent = parent;
     this.#container = this.randomString();
     this.#create = new Create(this);
   }

@@ -12,6 +12,7 @@ MenuJS {
   width: 43px;
   border-right: 1px solid rgba(133, 133, 133, 0.173);
   user-select: none;
+  pointer-events: auto;
 }
 
 MenuJS *:focus-visible {
@@ -35,6 +36,24 @@ MenuJSItem {
   transition: var(--trans-md);
   position: relative;
   cursor: pointer;
+}
+
+MenuJSItemClick {
+  display: flex;
+  text-align: center;
+  align-content: center;
+  align-items: stretch;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+  line-height: 30px;
+  border-radius: inherit;
+}
+
+MenuJSItemClick:active MenuJSItemIcon {
+  transition: var(--trans-esm);
+  transform: scale(0.85);
 }
 
 MenuJSItem:hover {
@@ -165,7 +184,7 @@ MenuJSItem[helper=true]:hover MenuJSItemHelper {
   transform: translateX(100%);
 }
 
-MenuJSItem[submenu="true"] MenuJSItemHelper{
+MenuJSItem[submenu="true"] MenuJSItemHelper {
   opacity: 0 !important;
   pointer-events: none !important;
   transform: translateX(calc(100% + -10px)) !important;
@@ -235,7 +254,13 @@ MenuJSItemSubmenu:before {
 }
 
 MenuJSItemSubmenu MenuJSItem {
+  margin-top: -1px;
+  border-radius: 0px;
+}
+
+MenuJSItemSubmenu MenuJSItem MenuJSItemClick {
   width: 100%;
+  display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-content: center;
@@ -246,7 +271,7 @@ MenuJSItemSubmenu MenuJSItem {
   height: auto;
   min-height: 0px;
   border-radius: 0px;
-  margin-top: -1px;
+  text-align: left;
 }
 
 MenuJSItemSubmenu MenuJSItemShotcut {
